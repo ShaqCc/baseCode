@@ -1,0 +1,31 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion Integer.valueOf(rootProject.compileVersion)
+    buildToolsVersion String.valueOf(rootProject.buildToolsVersion)
+    defaultConfig {
+        applicationId "com.yinling.android"
+        minSdkVersion Integer.valueOf(rootProject.minSdkVersion)
+        targetSdkVersion Integer.valueOf(rootProject.targetSdkVersion)
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+repositories {
+    flatDir {
+        dirs 'libs', '../base-lib/libs'
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation project(':base-lib')
+}
